@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express"
 import { AddProductController } from "./controllers/AddProductController"
 import { AuthenticateUserController } from "./controllers/AuthenticateUserController"
+import { isAuthenticated, isRefreshing } from "./middlewares"
 
 const router = Router()
 
@@ -11,12 +12,14 @@ router.get(
 
 
 router.post(
-	"/products/new",
+	"/products",
+	isAuthenticated,
 	new AddProductController().handle
 )
 
 router.post(
 	"/authenticate",
+	isRefreshing,
 	new AuthenticateUserController().handle
 )
 
