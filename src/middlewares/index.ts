@@ -2,29 +2,39 @@ import { Request, Response, NextFunction } from "express"
 import jwt from "jsonwebtoken"
 
 const SECRET = process.env.JWT_SECRET
+
 function isAuthenticated(
 	req:Request, res:Response, next:NextFunction
 ) {
-	const token = req.headers.authorization
+	const token = req
+	  .headers
+		.authorization?.replace("Bearer ", "")
 
-	if (!token) {
+	if(!token) {
 		return res.status(401).end("Unauthorized")
 	}
 
-	return next();
+	if(!(Object.keys(req.body)).includes("category")) {
+	  const user = jwt.verify(token, SECRET)
+	  req.body = user
+	}
+
+  return next();
 }
 
 function isRefreshing(
   req:Request, res:Response, next:NextFunction
 ) {
-	const token = req.headers.authorization
+	const token = req
+	  .headers
+		.authorization?.replace("Bearer ", "")
 
 	if (!token) {
 		return next();
 	}
 
 	const user = jwt.verify(token, SECRET)
-	console.log(user)
+	req.body = user
 
 	return next();
 }

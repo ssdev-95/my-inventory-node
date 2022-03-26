@@ -4,9 +4,9 @@ import { IProduct } from "../@types"
 class AddProductService {
   async execute(product: IProduct) {
 		try {
-	  	const productRepository = AppDataSource.getRepository(Product)
+	  	const repository = AppDataSource.getRepository(Product)
 
-		  const saved = await productRepository.save(product)
+		  const saved = await repository.save(product)
 			return saved;
 		} catch (err) {
 			throw err;

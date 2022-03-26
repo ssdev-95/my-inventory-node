@@ -1,6 +1,8 @@
 import { Router, Request, Response } from "express"
 import { AddProductController } from "./controllers/AddProductController"
 import { AuthenticateUserController } from "./controllers/AuthenticateUserController"
+import { RetrieveProductController } from "./controllers/RetrieveProductController"
+import { DeleteProductController } from "./controllers/DeleteProductController"
 import { isAuthenticated, isRefreshing } from "./middlewares"
 
 const router = Router()
@@ -15,6 +17,18 @@ router.post(
 	"/products",
 	isAuthenticated,
 	new AddProductController().handle
+)
+
+router.get(
+	"/products",
+	isAuthenticated,
+	new RetrieveProductController().handle
+)
+
+router.delete(
+	"/products",
+	isAuthenticated,
+	new DeleteProductController().handle
 )
 
 router.post(

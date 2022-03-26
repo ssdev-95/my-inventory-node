@@ -5,8 +5,8 @@ import { IUser } from "../@types"
 const SECRET = process.env.JWT_SECRET
 class AuthenticateUserService {
   async execute(user: IUser) {
-	  const userRepository = AppDataSource.getRepository(User)
-		const stored = await userRepository.findOneBy({
+	  const repository = AppDataSource.getRepository(User)
+		const stored = await repository.findOneBy({
 			email: user?.email
 		})
 

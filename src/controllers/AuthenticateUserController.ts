@@ -8,7 +8,6 @@ class AuthenticateUserController {
 
 		try {
   		const token = await service.execute(user)
-			//consolo.log(token)
 
   		return res.status(200).json({ token })
   	} catch (err) {
