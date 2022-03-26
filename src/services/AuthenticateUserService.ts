@@ -14,14 +14,14 @@ class AuthenticateUserService {
 			const saved = await userRepository.save(user)
 			const payload = { ...saved }
 			const token = jwt.sign(payload, SECRET, {
-				algorithm: 'RS256',
+				algorithm: 'HS256',
 				expiresIn: '1d'
 			})
 			return token;
 		} else {
 			const payload = { ...stored }
 			const token = jwt.sign(payload, SECRET, {
-				algorithm: 'RS256',
+				algorithm: 'HS256',
 			  expiresIn: '1d'  
 			})
 
