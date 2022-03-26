@@ -1,0 +1,12 @@
+.idea/
+.vscode/
+node_modules/
+build/
+tmp/
+temp/
+
+.env
+.env.local
+.env.test
+.env.ci
+.env.prod
