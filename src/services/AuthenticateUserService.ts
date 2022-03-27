@@ -11,7 +11,7 @@ class AuthenticateUserService {
 		})
 
 		if (!stored) {
-			const saved = await userRepository.save(user)
+			const saved = await repository.save(user)
 			const payload = { ...saved }
 			const token = jwt.sign(payload, SECRET, {
 				algorithm: 'HS256',
