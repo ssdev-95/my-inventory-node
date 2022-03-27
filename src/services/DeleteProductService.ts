@@ -4,9 +4,9 @@ class DeleteProductService {
   async execute(id: string) {
 		try {
 	  	const repository = AppDataSource.getRepository(Product)
-		  const deleted = await repository.delete({ id: id })
+		  const { affected } = await repository.delete({ id: id })
 
-			return !!deleted.affected;
+			return !!affected;
 		} catch (err) {
 			throw err;
 			return false;
