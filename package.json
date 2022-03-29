@@ -23,8 +23,10 @@
       "typescript": "4.5.2"
    },
    "scripts": {
-      "start": "ts-node src/db/index.ts",
+      "start": "node build/server.js",
       "dev": "ts-node-dev src/server.ts --watch",
-      "typeorm": "typeorm-ts-node-commonjs"
+      "typeorm": "typeorm-ts-node-commonjs",
+			"build": "tsc",
+			"heroku-postbuild": "npm run build"
    }
 }
