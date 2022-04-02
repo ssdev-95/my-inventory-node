@@ -17,8 +17,14 @@ function isAuthenticated(
 	if(!(Object.keys(req.body)).includes("category")) {
 	  const user = jwt.verify(token, SECRET)
 	  req.body = user
+		return next()
 	}
 
+	const user = jwt.verify(token, SECRET)
+	req.body = {
+		...req.body,
+		owner_id: user.id
+	}
   return next();
 }
 
