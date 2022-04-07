@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express"
 import jwt from "jsonwebtoken"
+import { IUser } from "../@types"
 
 const SECRET = process.env.JWT_SECRET
 
@@ -20,7 +21,7 @@ function isAuthenticated(
 		return next()
 	}
 
-	const user = jwt.verify(token, SECRET)
+	const user = jwt.verify(token, SECRET) as IUser;
 	req.body = {
 		...req.body,
 		owner_id: user.id
