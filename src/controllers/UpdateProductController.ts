@@ -9,7 +9,7 @@ class UpdateProductController {
 		try {
   		const updated = await service.execute(product)
 
-  		return res.status(200).json({ product: {} })
+  		return res.status(200).json({ product: updated })
   	} catch (err) {
 			return res.status(500).end("Failed to save entry to database!, " + err)
   	}
